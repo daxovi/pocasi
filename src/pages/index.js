@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import fetchWeather from "@/utils/fetchWeather";
 import CitySelector from "@/components/CitySelector";
 import ForecastItem from "@/components/ForecastItem";
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
 
 export default function Home() {
   const [weather, setWeather] = useState(null);
@@ -11,11 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async (city) => {
-      setError(null);
       setIsLoading(true);
       try {
         const weather = await fetchWeather(city);
         setWeather(weather);
+        console.log(weather); // DEBUG
+        setError(null);
         setIsLoading(false);
       } catch (error) {
         setError(error.message);
@@ -31,19 +34,28 @@ export default function Home() {
   }
 
   return (
-    <>
-      <h1>Počasí</h1>
-      <CitySelector onCityChange={onCityChange} />
-      {isLoading ? "načítání" : error ? (
-        <p>{error}</p>
+    <div className="container">
+      <header>
+        <h1>Počasí</h1>
+        <h2>{weather && weather.city}</h2>
+        <CitySelector onCityChange={onCityChange} />
+      </header>
+
+      {isLoading ? (
+        <Loading />
+      ) : error ? (
+        <Error error={error} />
       ) : (
-        <div className="weather-display">
-          <h2>Předpověď pro město {weather.city}</h2>
+        <main className="weather-display">
           {weather.forecast.map((forecast) => (
             <ForecastItem key={forecast.dt} forecast={forecast} />
           ))}
-        </div>
+        </main>
       )}
-    </>
+      
+      <footer>
+        Dalibor Janeček 2024
+      </footer>
+    </div>
   );
 }

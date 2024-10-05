@@ -13,8 +13,8 @@ const ForecastItem = ({ forecast }) => {
 
     return (
         <div className='weather-item'>
-            <p>Datum: {formatDate(forecast.dt)}</p>
-            <p>Čas: {formatTime(forecast.dt)}</p>
+            <time>{formatDate(forecast.dt)}</time>
+            <time>{formatTime(forecast.dt)}</time>
             <p>Teplota: {forecast.main.temp}°C</p>
             <p>Počasí: {forecast.weather[0].description}</p>
         </div>
