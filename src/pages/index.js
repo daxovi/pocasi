@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import fetchWeather from "@/utils/fetchWeather";
 import CitySelector from "@/components/CitySelector";
-import ForecastItem from "@/components/ForecastItem";
 import Loading from "@/components/Loading";
 import Error from "@/components/Error";
+import Forecast from "@/components/Forecast";
 
 export default function Home() {
   const [weather, setWeather] = useState(null);
@@ -46,13 +46,11 @@ export default function Home() {
       ) : error ? (
         <Error error={error} />
       ) : (
-        <main className="weather-display">
-          {weather.forecast.map((forecast) => (
-            <ForecastItem key={forecast.dt} forecast={forecast} />
-          ))}
+        <main className="forecast-display">
+          <Forecast forecastList={weather.forecast} />
         </main>
       )}
-      
+
       <footer>
         Dalibor Janeček 2024
       </footer>

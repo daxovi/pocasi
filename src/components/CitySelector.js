@@ -34,7 +34,7 @@ const CitySelector = ({onCityChange}) => {
     return (
         <div className="city-selector">
             <form onSubmit={handleSubmit}>
-                <input type="text" name="city" value={cityInput} onChange={handleInputChange} />
+                <input type="text" name="city" value={cityInput} onChange={handleInputChange} autocomplete="off" />
                 <button type="submit">Načti počasí</button>
             </form>
             {suggestions.length > 0 && (

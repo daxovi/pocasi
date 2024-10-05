@@ -1,0 +1,25 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.forecast-day--row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) repeat(4, 3fr) repeat(2, 1fr);
+    gap: 1em;
+    padding: 2em 0;
+}
+
+.forecast-item, .forecast-item--empty  {
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+    padding: 1em;
+    border-radius: 0.5em;
+    border: solid 1px black;
+}
+
+.forecast-item--empty {
+    opacity: 0.2;
+}
