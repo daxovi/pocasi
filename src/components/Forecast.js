@@ -18,7 +18,7 @@ const Forecast = ({ forecastList }) => {
 
     const emptyItems = (forecastDay) => {
         return Array(8 - forecastDay.length).fill().map((_, index) => (
-            <div key={`empty-${index}`} className="forecast-item--empty "></div>
+            <div key={`empty-${index}`} className="forecast-item forecast-item--empty "></div>
         ))
     }
 
