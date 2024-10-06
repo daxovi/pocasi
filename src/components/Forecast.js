@@ -32,6 +32,7 @@ const Forecast = ({ forecastList }) => {
                         {forecastByDay[day].map((forecast) => (
                             <ForecastItem key={forecast.dt} forecast={forecast} />
                         ))}
+                        {index > 0 && emptyItems(forecastByDay[day])}
                     </div>
                 </div>
             ))}

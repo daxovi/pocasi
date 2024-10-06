@@ -36,8 +36,7 @@ export default function Home() {
   return (
     <div className="container">
       <header>
-        <h1>Počasí</h1>
-        <h2>{weather && weather.city}</h2>
+        <h1>Počasí {weather && weather.city}</h1>
         <CitySelector onCityChange={onCityChange} />
       </header>
 
@@ -52,7 +51,8 @@ export default function Home() {
       )}
 
       <footer>
-        Dalibor Janeček 2024
+        <p>Dalibor Janeček 2024</p>
+        <p>GitHub: <a href="https://github.com/daxovi/pocasi">https://github.com/daxovi/pocasi</a></p>
       </footer>
     </div>
   );

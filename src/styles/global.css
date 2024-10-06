@@ -1,25 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Dobrá praxe pro zahrnutí paddingu a borderu do šířky a výšky elementu */
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: rgb(40, 45, 82);
+}
+
+h1, h2 {
+    margin: 1em 0 0.5em;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 500;
+}
+
+header {
+    text-align: center;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2em;
 }
 
+.forecast-day {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
 .forecast-day--row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) repeat(4, 3fr) repeat(2, 1fr);
-    gap: 1em;
-    padding: 2em 0;
+    grid-template-columns: repeat(2, 1fr) repeat(4, 2fr) repeat(2, 1fr);
+    gap: 3px;
+    background: url("/img/bg_day.jpg");
+    background-size: cover;
 }
 
 .forecast-item, .forecast-item--empty  {
-    display: flex;
-    flex-direction: column;
-    background-color: aqua;
-    padding: 1em;
-    border-radius: 0.5em;
-    border: solid 1px black;
+    container: forecast--item / inline-size;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr) 2fr;
+    justify-items: center;
+    border-radius: 4px;
+    height: 300px;
+    outline: 3px solid white;
+    align-items: center;
+    color: white;
+}
+
+.forecast-item img {
+    width: 70px;
+}
+
+.forecast-item--temperature span {
+    position: relative;
+    top: 8px;
+    font-size: 0.4em;
+    font-weight: 500;
+    vertical-align: text-top;
 }
 
 .forecast-item--empty {
-    opacity: 0.2;
+    background-color: rgba(255, 255, 255, 0.4);
 }
+
+.forecast-item--hours {
+    display: none;
+}
+
+.forecast-item--fulltime {
+    display: inline-block;
+}
+
+.forecast-item--temperature {
+    font-size: 4em;
+    font-weight: 300;
+}
+
+footer {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+@container forecast--item (max-width: 100px) {
+    .forecast-item img {
+        visibility: hidden;
+    } 
+
+
+    .forecast-item--temperature, .forecast-item--temperature span {
+        top: 0px;
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    .forecast-item--hours {
+        display: inline-block;
+    }
+
+    .forecast-item--fulltime {
+        display: none;
+    }
+  }  
