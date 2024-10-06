@@ -4,6 +4,7 @@ import citiesData from '@/data/citylist.json';
 const CitySelector = ({onCityChange}) => {
     const [cityInput, setCityInput] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleInputChange = (e) => {
         const value = e.target.value;
@@ -31,14 +32,27 @@ const CitySelector = ({onCityChange}) => {
         setSuggestions([]);
     };
 
+    const handleBlur = () => { 
+        const timeout = setTimeout(() => {
+            setIsFocused(false)
+        }, 100);
+     }
+
     return (
         <div className="city-selector">
             <form onSubmit={handleSubmit}>
-                <input type="text" name="city" value={cityInput} onChange={handleInputChange} autocomplete="off" />
-                <button type="submit">Načti počasí</button>
-            </form>
-            {suggestions.length > 0 && (
-                <ul>
+                <input 
+                type="text" 
+                name="city" 
+                value={cityInput} 
+                onChange={handleInputChange} 
+                autocomplete="off" 
+                placeholder='zadejte název města' 
+                onFocus={() => setIsFocused(true)}
+                onBlur={handleBlur}
+                />
+                {isFocused && suggestions.length > 0 && (
+                <ul className='city-selector--suggestion'>
                     {suggestions.map((city) => (
                         <li key={city.id} onClick={() => handleSuggestionClick(city.name)}>
                             {city.name}, {city.country}
@@ -46,6 +60,8 @@ const CitySelector = ({onCityChange}) => {
                     ))}
                 </ul>
             )}
+            </form>
+            
         </div>
     );
 };

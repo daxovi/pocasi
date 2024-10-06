@@ -2,12 +2,17 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Dobrá praxe pro zahrnutí paddingu a borderu do šířky a výšky elementu */
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Inter", sans-serif;
     color: rgb(40, 45, 82);
+}
+
+a {
+    color: rgb(40, 45, 82);
+
 }
 
 h1, h2 {
@@ -21,8 +26,12 @@ h1 {
 }
 
 header {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3em;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -81,6 +90,46 @@ header {
 .forecast-item--temperature {
     font-size: 4em;
     font-weight: 300;
+}
+
+.city-selector {
+    position: relative;
+    width: 300px;
+}
+
+.city-selector input {
+    width: 100%;
+    padding: 0.7em 1em;
+    border-radius: 1em;
+    font-size: 1em;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: rgb(40, 45, 82);
+    border: none;
+    background-color: rgb(236, 236, 236);
+}
+
+.city-selector--suggestion {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    border-radius: 1em;
+}
+
+.city-selector--suggestion li {
+    margin: 0.5em;
+    padding: 0.5em;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
+
+.city-selector--suggestion li:hover {
+    background-color: rgb(225, 238, 246);
 }
 
 footer {
