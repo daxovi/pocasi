@@ -72,7 +72,7 @@ header {
 
 .forecast-item img {
     width: 50%;
-        max-width: 70px;
+    max-width: 70px;
 }
 
 .forecast-item--temperature span {
@@ -149,8 +149,9 @@ footer {
 @container forecast--item (max-width: 130px) {
     .forecast-item img {
         width: 30%;
-            max-width: 70px;
+        margin-top: 2em;
     }
+
     .forecast-item--temperature,
     .forecast-item--temperature span {
         top: 0px;
@@ -178,6 +179,11 @@ footer {
         grid-column: span 1;
     }
 
+    .forecast-item img {
+        width: 40%;
+        margin-top: 0em;
+    }
+
     footer {
         flex-direction: column-reverse;
         gap: 0.5em;
@@ -188,31 +194,39 @@ footer {
     h1 {
         font-size: 2em;
     }
+
     .forecast-day--row {
         grid-template-columns: 1fr;
         grid-template-rows: 80px;
         grid-auto-rows: 80px;
         background-image: url("/img/bg_day_mobile.jpg");
     }
+
     .forecast-item--empty {
         display: none;
     }
+
     .container {
         padding: 0.5em;
     }
+
     .forecast-item:nth-child(n+3):nth-child(-n+6) {
         grid-column: span 1;
     }
+
     .forecast-item {
         font-size: 1.5em;
         grid-template-rows: auto;
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .forecast-item--temperature, .forecast-item--temperature span {
+
+    .forecast-item--temperature,
+    .forecast-item--temperature span {
         top: 0px;
         font-size: 1em;
         font-weight: 500;
     }
+
     .forecast-item img {
         width: 40px;
     }
