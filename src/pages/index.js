@@ -12,6 +12,7 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [timezoneOffset, setTimezoneOffset] = useState(0)
   const [showLocalTimezone, setShowLocalTimezone] = useState(false)
+  const [isCelsius, setIsCelsius] = useState(true)
 
   useEffect(() => {
     const fetchData = async (city) => {
@@ -40,6 +41,10 @@ export default function Home() {
     setShowLocalTimezone(!showLocalTimezone);
   }
 
+  const toggleCelsius = () => { 
+    setIsCelsius(!isCelsius);
+   }
+
   return (
     <div className="container">
       <header>
@@ -54,8 +59,9 @@ export default function Home() {
         <main className="forecast-display">
           <div className="forecast-display--settings">
             <button onClick={toggleTimezone} className="forecast-display--settings--button">{showLocalTimezone ? ("zobrazit předpověď v místním čase") : ("zobrazit předpověď v čase místa předpovědi")}</button>
+            <button onClick={toggleCelsius} className="forecast-display--settings--button">{isCelsius ? ("zobrazit předpověď ve °F") : ("zobrazit předpověď ve °C")}</button>
           </div>
-          <Forecast forecastList={weather.forecast} timezoneOffset={(showLocalTimezone ? timezoneOffset : (-new Date().getTimezoneOffset() * 60))} />
+          <Forecast forecastList={weather.forecast} timezoneOffset={(showLocalTimezone ? timezoneOffset : (-new Date().getTimezoneOffset() * 60))} isCelsius={isCelsius} />
         </main>
       )}
 

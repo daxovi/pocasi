@@ -1,7 +1,7 @@
 import React from 'react'
 import ForecastItem from './ForecastItem';
 
-const Forecast = ({ forecastList, timezoneOffset}) => {
+const Forecast = ({ forecastList, timezoneOffset, isCelsius}) => {
     const formatDate = (unixTime, timezoneOffset) => {
         const actualTimezoneOffset = -new Date().getTimezoneOffset() * 60;
         const date = new Date((unixTime + timezoneOffset - actualTimezoneOffset) * 1000);
@@ -31,7 +31,7 @@ const Forecast = ({ forecastList, timezoneOffset}) => {
                     <div className="forecast-day--row">
                         {index === 0 && emptyItems(forecastByDay[day])}
                         {forecastByDay[day].map((forecast) => (
-                            <ForecastItem key={forecast.dt} forecast={forecast} timezoneOffset={timezoneOffset}/>
+                            <ForecastItem key={forecast.dt} forecast={forecast} timezoneOffset={timezoneOffset} isCelsius={isCelsius} />
                         ))}
                         {index > 0 && emptyItems(forecastByDay[day])}
                     </div>
