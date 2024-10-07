@@ -98,6 +98,12 @@ header {
     max-width: 70px;
 }
 
+.forecast-item--temperature {
+    font-size: 4em;
+    font-weight: 300;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 .forecast-item--temperature span {
     position: relative;
     top: 8px;
@@ -114,13 +120,35 @@ header {
     display: none;
 }
 
-.forecast-item--fulltime {
-    display: inline-block;
+@keyframes loadGraph {
+    from {
+        opacity: 0;
+        height: 0%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.5;
+    }
 }
 
-.forecast-item--temperature {
-    font-size: 4em;
-    font-weight: 300;
+.forecast-item--graph {
+    position: absolute;
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.0));
+    bottom: 0%;
+    width: 100%;
+    padding: 2px 0;
+    border-radius: 4px;
+    opacity: 0;
+    animation: loadGraph 3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.forecast-item--fulltime {
+    display: inline-block;
 }
 
 .forecast-item--tooltip {
@@ -147,6 +175,10 @@ header {
 .forecast-item:nth-child(n+3):nth-child(-n+6):hover {
     color: rgba(0, 0, 0, 0.0);
     transition: color 0.2s;
+}
+
+.forecast-item:nth-child(n+3):nth-child(-n+6):hover .forecast-item--temperature {
+    text-shadow: none;
 }
 
 .forecast-item:nth-child(n+3):nth-child(-n+6):hover img {
@@ -230,19 +262,20 @@ footer {
     font-weight: 400;
     margin-top: 0.5em;
     opacity: 0;
-  animation: fadeIn 0s ease-in-out;
-  animation-delay: 2s;
-  animation-fill-mode: forwards
+    animation: fadeIn 0s ease-in-out;
+    animation-delay: 2s;
+    animation-fill-mode: forwards
 }
 
 @keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
+
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
 
 /* MARK: velikost obrazovky */
 /* Forecast item podle velikosti */
@@ -346,5 +379,9 @@ footer {
 
     .forecast-item img {
         width: 40px;
+    }
+
+    .forecast-item--graph {
+        display: none;
     }
 }
