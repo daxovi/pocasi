@@ -46,7 +46,7 @@ const CitySelector = ({onCityChange}) => {
                 name="city" 
                 value={cityInput} 
                 onChange={handleInputChange} 
-                autocomplete="off" 
+                autoComplete="off" 
                 placeholder='zadejte název města' 
                 onFocus={() => setIsFocused(true)}
                 onBlur={handleBlur}
