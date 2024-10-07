@@ -20,6 +20,7 @@ h1,
 h2 {
     margin: 1em 0 0.5em;
     font-weight: 600;
+    text-align: center;
 }
 
 h1 {
@@ -40,6 +41,9 @@ header {
     padding: 2em;
 }
 
+/* MARK: Day 
+*/
+
 .forecast-day {
     text-align: center;
     margin-bottom: 3em;
@@ -55,7 +59,11 @@ header {
     background-size: cover;
 }
 
+/* MARK: Item 
+*/
+
 .forecast-item {
+    position: relative;
     container: forecast--item / inline-size;
     display: grid;
     grid-template-rows: repeat(2, 1fr) 2fr;
@@ -64,6 +72,8 @@ header {
     outline: 3px solid white;
     align-items: center;
     color: white;
+    transition: color 0.2s;
+
 }
 
 .forecast-item:nth-child(n+3):nth-child(-n+6) {
@@ -100,6 +110,40 @@ header {
     font-weight: 300;
 }
 
+.forecast-item--tooltip {
+    opacity: 0;
+    position: absolute;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    z-index: 5;
+    color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    transition: opacity 0.2s;
+}
+
+.forecast-item:nth-child(n+3):nth-child(-n+6):hover .forecast-item--tooltip {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.forecast-item:nth-child(n+3):nth-child(-n+6):hover {
+    color: rgba(0, 0, 0, 0.0);
+    transition: color 0.2s;
+}
+
+.forecast-item:nth-child(n+3):nth-child(-n+6):hover img {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* MARK: City selector 
+*/
+
 .city-selector {
     position: relative;
     width: 300px;
@@ -122,7 +166,7 @@ header {
     top: 105%;
     left: 0;
     right: 0px;
-    z-index: 10;
+    z-index: 100;
     background-color: white;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
     list-style: none;
@@ -140,11 +184,17 @@ header {
     background-color: rgb(225, 238, 246);
 }
 
+/* MARK: Footer 
+*/
+
 footer {
     margin-top: 2em;
     display: flex;
     justify-content: space-between;
 }
+
+/* MARK: velikost obrazovky */
+/* Forecast item podle velikosti */
 
 @container forecast--item (max-width: 130px) {
     .forecast-item img {
@@ -168,6 +218,8 @@ footer {
     }
 }
 
+/* Menší obrazovka */
+
 @media screen and (max-width: 900px) {
     .forecast-day--row {
         grid-template-columns: repeat(8, 1fr);
@@ -184,11 +236,25 @@ footer {
         margin-top: 0em;
     }
 
+    .forecast-item:nth-child(n+3):nth-child(-n+6):hover {
+        color: white;
+    }
+
+    .forecast-item:nth-child(n+3):nth-child(-n+6):hover img {
+        opacity: 1;
+    }
+
+    .forecast-item:nth-child(n+3):nth-child(-n+6):hover .forecast-item--tooltip {
+        opacity: 0;
+    }
+
     footer {
         flex-direction: column-reverse;
         gap: 0.5em;
     }
 }
+
+/* Mobilní zobrazení */
 
 @media screen and (max-width: 600px) {
     h1 {

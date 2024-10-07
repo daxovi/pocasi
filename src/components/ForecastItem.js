@@ -17,6 +17,12 @@ const ForecastItem = ({ forecast }) => {
             <time className='forecast-item--hours'>{formatHours(forecast.dt)}</time>
             <p className='forecast-item--temperature'>{Math.round(forecast.main.temp)}<span>°C</span></p>
             <img src={"/icons/" + forecast.weather[0].icon + ".svg"} alt={forecast.weather[0].description} />
+            <div className='forecast-item--tooltip'>
+            <p>{forecast.weather[0].description}</p>
+                <p>pocitová teplota<br />{forecast.main.feels_like}°C</p>
+                <p>rychlost větru<br />{forecast.wind.speed}m/s</p>
+                <p>oblačnost<br />{forecast.clouds.all}%</p>
+            </div>
         </div>
     );
 }
