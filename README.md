@@ -113,6 +113,7 @@ Aplikace Počasí byla testována a funguje v následujících prohlížečích:
 - **Google Chrome**: verze 129 a novější
 - **Mozilla Firefox**: verze 131 a novější
 - **Microsoft Edge**: verze 129 a novější
+- **Safari**: verze 18 a novější
 
 Aplikace je optimalizována pro moderní prohlížeče s podporou ECMAScript 6 (ES6) a novějších standardů, včetně podpory Fetch API a Flexboxu/Grid layoutu. Starší prohlížeče mohou mít problémy se správným fungováním aplikace.
 
