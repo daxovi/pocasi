@@ -73,7 +73,7 @@ Pokud chceš aplikaci nasadit na vlastní statický hosting pomocí FTP, nahraj 
 ### Komponenty
 - **CitySelector** – Formulář, který umožňuje uživateli zadat název města. Má implementovaný našeptávač, který při zadání minimálně 3 písmen nabízí názvy měst z JSON souboru.
 - **Forecast** – Komponenta, která zobrazuje předpověď počasí na 5 dní. Počasí je rozděleno do časových úseků po 3 hodinách.
-ForecastItem – Jednotlivý prvek předpovědi, který zobrazuje počasí, teplotu a čas pro konkrétní 3hodinový úsek.
+- **ForecastItem** – Jednotlivý prvek předpovědi, který zobrazuje počasí, teplotu a čas pro konkrétní 3hodinový úsek.
 
 
 ### API komunikace
@@ -105,6 +105,16 @@ Našeptávač používá JSON soubor se seznamem měst poskytnutý OpenWeather a
 
 ### Ikony počasí
 Pro zobrazení ikon počasí používá aplikace ikony z **Bootstrap Icons**, které jsou nahrány do projektu a zobrazovány podle aktuálního počasí.
+
+## Podporované prohlížeče
+
+Aplikace Počasí byla testována a funguje v následujících prohlížečích:
+
+- **Google Chrome**: verze 129 a novější
+- **Mozilla Firefox**: verze 131 a novější
+- **Microsoft Edge**: verze 129 a novější
+
+Aplikace je optimalizována pro moderní prohlížeče s podporou ECMAScript 6 (ES6) a novějších standardů, včetně podpory Fetch API a Flexboxu/Grid layoutu. Starší prohlížeče mohou mít problémy se správným fungováním aplikace.
 
 
 ## Závěr
