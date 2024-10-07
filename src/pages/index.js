@@ -10,6 +10,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [city, setCity] = useState("Olomouc");
   const [error, setError] = useState(null);
+  const [timezoneOffset, setTimezoneOffset] = useState(0)
+  const [showLocalTimezone, setShowLocalTimezone] = useState(false)
 
   useEffect(() => {
     const fetchData = async (city) => {
@@ -20,6 +22,7 @@ export default function Home() {
         console.log(weather); // DEBUG
         setError(null);
         setIsLoading(false);
+        setTimezoneOffset(weather.city.timezone);
       } catch (error) {
         setError(error.message);
         setWeather(null);
@@ -33,20 +36,26 @@ export default function Home() {
     setCity(newCity);
   }
 
+  const toggleTimezone = () => {
+    setShowLocalTimezone(!showLocalTimezone);
+  }
+
   return (
     <div className="container">
       <header>
-        <h1>Počasí {weather && weather.city}</h1>
+        <h1>Počasí {weather && weather.city.name}</h1>
         <CitySelector onCityChange={onCityChange} />
       </header>
-
       {isLoading ? (
         <Loading />
       ) : error ? (
         <Error error={error} />
       ) : (
         <main className="forecast-display">
-          <Forecast forecastList={weather.forecast} />
+          <div className="forecast-display--settings">
+            <button onClick={toggleTimezone} className="forecast-display--settings--button">{showLocalTimezone ? ("zobrazit předpověď v místním čase") : ("zobrazit předpověď v čase místa předpovědi")}</button>
+          </div>
+          <Forecast forecastList={weather.forecast} timezoneOffset={(showLocalTimezone ? timezoneOffset : (-new Date().getTimezoneOffset() * 60))} />
         </main>
       )}
 

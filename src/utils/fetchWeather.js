@@ -8,7 +8,7 @@ const fetchWeatherData = async (city) => {
     }
     const data = await response.json();
     return {
-        city: data.city.name,
+        city: data.city,
         forecast: data.list
     };
 };

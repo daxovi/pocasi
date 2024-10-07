@@ -32,13 +32,26 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3em;
+    margin-bottom: 0.5em;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2em;
+}
+
+.forecast-display--settings {
+    display: flex;
+    margin-bottom: 3em;
+    justify-content: center;
+}
+
+.forecast-display--settings--button {
+    border: none;
+    background: none;
+    text-decoration: underline;
+    padding: 0.5em;
 }
 
 /* MARK: Day 

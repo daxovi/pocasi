@@ -1,14 +1,15 @@
 import React from 'react'
 import ForecastItem from './ForecastItem';
 
-const Forecast = ({ forecastList }) => {
-    const formatDate = (unixTime) => {
-        const date = new Date(unixTime * 1000);
+const Forecast = ({ forecastList, timezoneOffset}) => {
+    const formatDate = (unixTime, timezoneOffset) => {
+        const actualTimezoneOffset = -new Date().getTimezoneOffset() * 60;
+        const date = new Date((unixTime + timezoneOffset - actualTimezoneOffset) * 1000);
         return date.toLocaleDateString();
     }
 
     const forecastByDay = forecastList.reduce((acc, forecast) => {
-        const day = formatDate(forecast.dt);
+        const day = formatDate(forecast.dt, timezoneOffset);
         if (!acc[day]) {
             acc[day] = [];
         }
@@ -30,7 +31,7 @@ const Forecast = ({ forecastList }) => {
                     <div className="forecast-day--row">
                         {index === 0 && emptyItems(forecastByDay[day])}
                         {forecastByDay[day].map((forecast) => (
-                            <ForecastItem key={forecast.dt} forecast={forecast} />
+                            <ForecastItem key={forecast.dt} forecast={forecast} timezoneOffset={timezoneOffset}/>
                         ))}
                         {index > 0 && emptyItems(forecastByDay[day])}
                     </div>
