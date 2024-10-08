@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import citiesData from '@/data/citylist.json';
 
+// Komponenta CitySelector pro výběr města a zobrazení našeptávače
 const CitySelector = ({ onCityChange }) => {
     const [cityInput, setCityInput] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
 
+    // Funkce pro zpracování změny v inputu
     const handleInputChange = (e) => {
         const value = e.target.value;
         setCityInput(value);
 
+        // Pokud je délka hodnoty větší než 2 znaky, filtruje města podle vstupu
         if (value.length > 2) {
             const filteredCities = citiesData.filter(city =>
                 city.name.toLowerCase().startsWith(value.toLowerCase())
@@ -20,20 +23,23 @@ const CitySelector = ({ onCityChange }) => {
         }
     };
 
+    // Funkce pro kliknutí na návrh města
     const handleSuggestionClick = (cityName) => {
         setCityInput(cityName);
         setSuggestions([]);
         onCityChange(cityName);
     };
 
+    // Funkce pro zpracování odeslání formuláře
     const handleSubmit = (e) => {
         e.preventDefault();
         onCityChange(cityInput);
         setSuggestions([]);
     };
 
+    // Funkce pro ošetření situace, kdy uživatel klikne mimo input a skryje se našeptávač
     const handleBlur = () => {
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout(() => { // Prodleva, aby mohl uživatel kliknout na návrh
             setIsFocused(false)
         }, 100);
     }

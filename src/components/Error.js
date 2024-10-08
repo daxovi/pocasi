@@ -1,6 +1,8 @@
 import React from 'react'
 
+// Komponenta Error zobrazuje chybu a možnost znovu načíst aplikaci
 const Error = ({error}) => {
+  // Funkce pro znovu načtení aplikace
   const reloadApp = () => { 
     window.location.reload()
    }

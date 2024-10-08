@@ -1,9 +1,11 @@
 import React from 'react'
 
+// Komponenta Loading zobrazuje načítání
 const Loading = () => {
-  const reloadApp = () => { 
+  // Funkce pro znovu načtení aplikace
+  const reloadApp = () => {
     window.location.reload()
-   }
+  }
 
   return (
     <div className='no-content'>

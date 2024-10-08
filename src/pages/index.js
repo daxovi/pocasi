@@ -6,19 +6,27 @@ import Error from "@/components/Error";
 import Forecast from "@/components/Forecast";
 
 export default function Home() {
+  // Stavy pro uchování informací o počasí
   const [weather, setWeather] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [city, setCity] = useState("Olomouc");
-  const [error, setError] = useState(null);
+
+  // Stav pro práci s časovým posunem
   const [timezoneOffset, setTimezoneOffset] = useState(0)
+
+  // Stavy pro nastavení aplikace
   const [showLocalTimezone, setShowLocalTimezone] = useState(false)
   const [isCelsius, setIsCelsius] = useState(true)
 
+  // Stavy pro případ že nejsou načtena data
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
+    // Hook pro načtení dat o počasí při změně města
     const fetchData = async (city) => {
       setIsLoading(true);
       try {
-        const weather = await fetchWeather(city);
+        const weather = await fetchWeather(city); // Načte data o počasí pro dané město
         setWeather(weather);
         setError(null);
         setIsLoading(false);
@@ -30,7 +38,7 @@ export default function Home() {
       }
     };
     fetchData(city);
-  }, [city])
+  }, [city]) // Hook se spustí při každé změně stavu 'city'
 
   const onCityChange = (newCity) => {
     setCity(newCity);

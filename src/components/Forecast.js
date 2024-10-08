@@ -1,6 +1,7 @@
 import React from 'react'
 import ForecastItem from './ForecastItem';
 
+// Komponenta Forecast pro zobrazení celé předpovědi
 const Forecast = ({ forecastList, timezoneOffset, isCelsius }) => {
     // Funkce pro formátování data na základě unixového času a posunu časové zóny
     const formatDate = (unixTime, timezoneOffset) => {
@@ -13,7 +14,7 @@ const Forecast = ({ forecastList, timezoneOffset, isCelsius }) => {
     const forecastByDay = forecastList.reduce((acc, forecast) => {
         const day = formatDate(forecast.dt, timezoneOffset);
         if (!acc[day]) {
-            acc[day] = [];
+            acc[day] = []; // Pokud den ještě neexistuje v akumulátoru, inicializuje se
         }
         acc[day].push(forecast);
         return acc;
