@@ -20,7 +20,6 @@ export default function Home() {
       try {
         const weather = await fetchWeather(city);
         setWeather(weather);
-        console.log(weather); // DEBUG
         setError(null);
         setIsLoading(false);
         setTimezoneOffset(weather.city.timezone);
@@ -41,14 +40,19 @@ export default function Home() {
     setShowLocalTimezone(!showLocalTimezone);
   }
 
-  const toggleCelsius = () => { 
+  const toggleCelsius = () => {
     setIsCelsius(!isCelsius);
-   }
+  }
 
   return (
     <div className="container">
       <header>
-        <h1>Počasí {weather && weather.city.name}</h1>
+        <h1>
+          Počasí {weather && weather.city.name}
+          <a href="#nastaveni">
+            <img src="/icons/gear-fill.svg" alt="nastavení" />
+          </a>
+        </h1>
         <CitySelector onCityChange={onCityChange} />
       </header>
       {isLoading ? (
@@ -57,11 +61,16 @@ export default function Home() {
         <Error error={error} />
       ) : (
         <main className="forecast-display">
+          <Forecast
+            forecastList={weather.forecast}
+            timezoneOffset={(showLocalTimezone ? timezoneOffset : (-new Date().getTimezoneOffset() * 60))} isCelsius={isCelsius}
+          />
           <div className="forecast-display--settings">
-            <button onClick={toggleTimezone} className="forecast-display--settings--button">{showLocalTimezone ? ("zobrazit předpověď v místním čase") : ("zobrazit předpověď v čase místa předpovědi")}</button>
-            <button onClick={toggleCelsius} className="forecast-display--settings--button">{isCelsius ? ("zobrazit předpověď ve °F") : ("zobrazit předpověď ve °C")}</button>
+            <h2 id="nastaveni">Nastavení</h2>
+            <a onClick={toggleTimezone} className={`forecast-display--settings--button ${showLocalTimezone ? 'forecast-display--settings--button-active' : ''}`}>zobrazit čas podle místa předpovědi</a>
+            <a onClick={toggleCelsius} className={`forecast-display--settings--button ${!isCelsius ? 'forecast-display--settings--button-active' : ''}`}>zobrazit předpověď ve °F</a>
+            <p>Data jsou načítána z <a href="http://www.openweathermap.org">www.openweathermap.org</a></p>
           </div>
-          <Forecast forecastList={weather.forecast} timezoneOffset={(showLocalTimezone ? timezoneOffset : (-new Date().getTimezoneOffset() * 60))} isCelsius={isCelsius} />
         </main>
       )}
 
