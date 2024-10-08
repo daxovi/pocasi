@@ -58,7 +58,6 @@ Pro vytvoření produkční verze aplikace použij následující příkazy:
 
 ```bash
 npm run build
-npm run export
 ```
 
 Export aplikace vytvoří složku `out`, která obsahuje statické soubory připravené pro nasazení.
